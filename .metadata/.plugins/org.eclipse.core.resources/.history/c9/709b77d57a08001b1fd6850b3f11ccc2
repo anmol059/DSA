@@ -1,0 +1,95 @@
+package LinkedList;
+
+import java.util.Scanner;
+
+import fundamentals.Node;
+
+public class LLUse {
+	
+	public static int countt(Node<Integer> head, n)
+    {
+        int count = 0;
+        while(head != null)
+        {
+            if(head.data.equals(n))
+            {
+                count++;
+            }
+            head = head.next;
+        }
+        return count;
+    }
+	
+	public static Node<Integer> clone(Node<Integer> head) {
+        //Your code goes here
+        Node<Integer> copyHead = null;
+        Node<Integer> copyTail = null;
+        Node<Integer> temp = head;
+        
+        
+        while(head != null)
+        {
+            if(copyHead == null)
+            {
+                copyHead = new Node<>(head.data);
+                copyTail = copyHead;
+                copyTail.next = head.next;
+                head.next = copyTail;
+            }
+            else
+            {
+            	copyTail = new Node<>(head.data);
+            	copyTail.next = head.next;
+                head.next = copyTail;
+            }
+            head = copyTail.next;
+        }
+        return temp;
+	}
+	
+	
+	public static void print(Node<Integer> head)
+	{
+		Node<Integer> temp = head;
+		while(temp != null)
+		{
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
+	}
+	
+	public static Node<Integer> takeInput(){
+		Scanner s = new Scanner(System.in);
+		int data = s.nextInt();
+		Node<Integer> head = null, tail = null;
+		while(data != -1)
+		{
+			Node<Integer> currentNode = new Node<>(data);
+			if(head == null)
+			{
+				head = currentNode;
+				tail = currentNode;
+			}
+			else
+			{
+				tail.next = currentNode;
+				tail = currentNode;
+			}
+			data = s.nextInt();
+		}
+		return head;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Node<Integer> head = takeInput();
+		head = clone(head);
+		print(head);
+		
+		
+		
+//		DoubleNode<Integer> ans = reverse(head);
+//		print(ans.head);	
+	}
+}

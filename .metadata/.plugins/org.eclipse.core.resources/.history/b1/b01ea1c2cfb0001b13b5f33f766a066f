@@ -1,0 +1,53 @@
+package Ques;
+
+import java.util.*;
+
+public class evaluate {
+    // infix
+    public static int infixEvaluation(String str) {
+
+    }
+
+    public static void infixToPrefix(String str) {
+
+    }
+
+    public static void infixToPostfix(String str) {
+
+    }
+
+    // prefix
+    public static int prefixEvaluation(String str) {
+
+    }
+
+    public static void prefixToInfix(String str) {
+
+    }
+
+    public static void prefixToPostfix(String str) {
+
+    }
+
+    // postfix
+    public static int postfixEvaluation(String str) {
+
+    }
+
+    public static void postfixToPrefix(String str) {
+
+    }
+
+    public static void postixToinfix(String str) {
+
+    }
+    
+    public static void evaluation() {
+        String str = "";
+
+    }
+    
+    public static void main(String[] args) {
+        evaluation();    
+    }
+}

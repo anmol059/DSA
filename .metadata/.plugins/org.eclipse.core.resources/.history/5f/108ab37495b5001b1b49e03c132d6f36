@@ -1,0 +1,141 @@
+package LinkedList;
+
+import java.util.Scanner;
+
+public class LLUse {
+	
+	public static int count(Node<Integer> head, int n)
+    {
+        int count = 0;
+        while(head != null)
+        {
+            if(head.data.equals(n))
+            {
+                count++;
+            }
+            head = head.next;
+        }
+        return count;
+    }
+	
+//	public static LinkedListNode<Integer> reverse(LinkedListNode<Integer> head)
+//	{
+//		if(head == null || head.next == null)
+//		{
+//			return head;
+//		}
+//		LinkedListNode<Integer> ans = reverse(head.next);
+//		head.next.next = head;
+//		head.next = null;
+//		return ans;
+//	}
+	
+	public static Node<Integer> split(Node<Integer> head)
+	{
+		if(head == null || head.next == null)
+		{
+			return head;
+		}
+		Node<Integer> head1;
+	    Node<Integer> head2;    
+	    
+	    Node<Integer> temp1;
+	    Node<Integer> temp2;
+	    
+	    head1 = temp1 = head;
+	    head2 = temp2 = head.next;
+		
+		Node<Integer> node = head.next.next;
+		
+		while(node != null && node.next != null)
+		{
+			temp1.next = node;
+			temp2.next = node.next;
+			
+			node = node.next.next;
+			
+			temp1 = temp1.next;
+			temp2 = temp2.next;
+		}
+		if(node != null)
+		{
+			temp1.next = node;
+			temp1 = temp1.next;
+		}
+		temp1.next = null;
+		temp2.next = null;
+		
+		return head1;
+	}
+	
+	
+	public static Node<Integer> clone(Node<Integer> head) {
+        //Your code goes here
+        Node<Integer> current = head;
+        while(current != null)
+        {
+        	Node<Integer> next = current.next;
+        	current.next = new Node<>(current.data);
+        	current = current.next;
+        	current.next = next;
+        	current = next;
+        }
+        return head;
+	}
+	
+	
+	public static void print(Node<Integer> head)
+	{
+		Node<Integer> temp = head;
+		while(temp != null)
+		{
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
+	}
+	
+	public static Node<Integer> takeInput(){
+		Scanner s = new Scanner(System.in);
+		int data = s.nextInt();
+		Node<Integer> head = null, tail = null;
+		while(data != -1)
+		{
+			Node<Integer> currentNode = new Node<>(data);
+			if(head == null)
+			{
+				head = currentNode;
+				tail = currentNode;
+			}
+			else
+			{
+				tail.next = currentNode;
+				tail = currentNode;
+			}
+			data = s.nextInt();
+		}
+		return head;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		Node<Integer> head = takeInput();
+//		head = clone(head);
+//		print(head);
+		
+		linkedlist<Integer> ll = new linkedlist<>();
+		ll.addFirst(10);
+		ll.addLast(20);
+		ll.addLast(30);
+		ll.addLast(40);
+		ll.addLast(50);
+		ll.addAt(80, 3);
+		ll.addAt(555, 0);
+		ll.addAt(555, ll.size() - 1);
+		System.out.println(ll.getAt(ll.size() - 1));
+		System.out.println(ll.removeLast());
+		System.out.println(ll.removeFirst());
+		System.out.println(ll.removeFirst());
+		ll.display();
+	}
+}

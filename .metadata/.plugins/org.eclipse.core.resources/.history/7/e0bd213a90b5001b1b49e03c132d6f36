@@ -1,0 +1,106 @@
+package LinkedList;
+
+public class linkedlist<T> {
+	private Node<T> tail;
+	private Node<T> head;
+	private int size;
+
+	public linkedlist() {
+		this.head = this.tail = null;
+		this.size = 0;
+	}
+
+	private void handleWhenSize0(T val) {
+		Node<T> newNode = new Node<>(val);
+		this.head = this.tail = newNode;
+		this.size++;
+
+	}
+
+	public void addFirst(T val) {
+		if (this.size == 0) {
+			handleWhenSize0(val);
+		} else {
+			Node<T> newNode = new Node<>(val);
+			newNode.next = head;
+			this.head = newNode;
+			size++;
+		}
+
+	}
+
+	public void addLast(T val) {
+		if (this.size == 0) {
+			handleWhenSize0(val);
+		} else {
+			Node<T> newNode = new Node<>(val);
+			tail.next = newNode;
+			this.tail = newNode;
+			size++;
+		}
+	}
+
+	public void addAt(T val, int indx) {
+		if (indx < 0 || indx >= this.size()) {
+			System.out.println("Invalid index");
+		} else if (indx == 0) {
+			addFirst(val);
+		} else if (indx == this.size - 1) {
+			addLast(val);
+		} else {
+			Node<T> temp = this.head;
+			for (int i = 0; i < indx - 1; i++) {
+				temp = temp.next;
+			}
+			Node<T> nnn = temp.next;
+			Node<T> newNode = new Node<>(val);
+			temp.next = newNode;
+			newNode.next = nnn;
+			size++;
+		}
+	}
+
+	public T getFirst() {
+		return head.data;
+	}
+
+	public T getLast() {
+		return tail.data;
+	}
+
+	public T getAt(int indx) {
+		if(indx == 0 || indx == this.size()) {
+			return null;
+		}
+		Node<T> temp = head;
+		for (int i = 0; i < indx; i++) {
+			temp = temp.next;
+		}
+		return temp.data;
+	}
+
+	public void removeFirst() {
+		head = head.next;
+	}
+
+	public void removeLast() {
+
+	}
+
+	public T removeAt(int indx) {
+		return null;
+	}
+
+	public int size() {
+		return this.size;
+	}
+
+	public void display() {
+		Node<T> temp = this.head;
+		while (temp != null) {
+			System.out.print(temp.data + " -> ");
+			temp = temp.next;
+		}
+		System.out.println(" null");
+	}
+}
